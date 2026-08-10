@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <MonoAssembliesPath>D:\Path\To\Schedule I_alternate\Schedule I_Data\Managed</MonoAssembliesPath>
+    <MonoMelonLoaderPath>D:\Path\To\Schedule I_alternate\MelonLoader\net35</MonoMelonLoaderPath>
+    <Il2CppAssembliesPath>D:\Path\To\Schedule I_public\MelonLoader\Il2CppAssemblies</Il2CppAssembliesPath>
+    <Il2CppMelonLoaderPath>D:\Path\To\Schedule I_public\MelonLoader\net6</Il2CppMelonLoaderPath>
+    <LocalMonoDeploymentPath>D:\Path\To\Schedule I_alternate</LocalMonoDeploymentPath>
+    <LocalIl2CppDeploymentPath>D:\Path\To\Schedule I_public</LocalIl2CppDeploymentPath>
+  </PropertyGroup>
+</Project>

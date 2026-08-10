@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Configurations>Mono;Il2cpp</Configurations>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>S1AntiCheat.P2PSmoke</AssemblyName>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Mono'">
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <DefineConstants>$(DefineConstants);MONO</DefineConstants>
+    <ManagedPath>$(GamePath)\Schedule I_Data\Managed</ManagedPath>
+    <MelonPath>$(GamePath)\MelonLoader\net35</MelonPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Il2cpp'">
+    <TargetFramework>net6.0</TargetFramework>
+    <DefineConstants>$(DefineConstants);IL2CPP</DefineConstants>
+    <ManagedPath>$(GamePath)\MelonLoader\Il2CppAssemblies</ManagedPath>
+    <MelonPath>$(GamePath)\MelonLoader\net6</MelonPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\S1AntiCheat.API\S1AntiCheat.API.csproj" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(MelonPath)\0Harmony.dll" Private="false" />
+    <Reference Include="MelonLoader" HintPath="$(MelonPath)\MelonLoader.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedPath)\UnityEngine.CoreModule.dll" Private="false" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Mono'">
+    <Reference Include="Assembly-CSharp" HintPath="$(ManagedPath)\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="FishNet.Runtime" HintPath="$(ManagedPath)\FishNet.Runtime.dll" Private="false" />
+    <Reference Include="Steamworks.NET" HintPath="$(ManagedPath)\com.rlabrecque.steamworks.net.dll" Private="false" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Il2cpp'">
+    <Reference Include="Assembly-CSharp" HintPath="$(ManagedPath)\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="Il2CppFishNet.Runtime" HintPath="$(ManagedPath)\Il2CppFishNet.Runtime.dll" Private="false" />
+    <Reference Include="Il2CppInterop.Runtime" HintPath="$(MelonPath)\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="Il2Cppmscorlib" HintPath="$(ManagedPath)\Il2Cppmscorlib.dll" Private="false" />
+    <Reference Include="Il2CppSteamworks.NET" HintPath="$(ManagedPath)\Il2Cppcom.rlabrecque.steamworks.net.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="ValidateGamePath" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(Configuration)' != 'Mono' and '$(Configuration)' != 'Il2cpp'"
+           Text="Build the smoke probe with Configuration=Mono or Configuration=Il2cpp." />
+    <Error Condition="'$(GamePath)' == ''" Text="Set GamePath to the matching local Schedule I installation." />
+    <Error Condition="!Exists('$(ManagedPath)\Assembly-CSharp.dll') or !Exists('$(MelonPath)\MelonLoader.dll')"
+           Text="GamePath must point to a matching Schedule I installation with MelonLoader." />
+  </Target>
+</Project>

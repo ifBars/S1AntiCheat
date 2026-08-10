@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="S1AntiCheat.API/S1AntiCheat.API.csproj" />
+  <Project Path="S1AntiCheat.csproj" />
+  <Folder Name="/tests/">
+    <Project Path="tests/S1AntiCheat.ContractVerifier/S1AntiCheat.ContractVerifier.csproj" />
+    <Project Path="tests/S1AntiCheat.P2PSmoke/S1AntiCheat.P2PSmoke.csproj" />
+  </Folder>
+</Solution>
