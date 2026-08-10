@@ -14,4 +14,3 @@ public sealed class AntiCheatUnavailableException : InvalidOperationException
     {
     }
 }
-

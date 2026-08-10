@@ -21,4 +21,3 @@ internal interface IAntiCheatRuntime
         AntiCheatViolationSeverity severity,
         string reason);
 }
-

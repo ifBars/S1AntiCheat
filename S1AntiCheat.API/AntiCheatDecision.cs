@@ -26,7 +26,6 @@ public enum AntiCheatDecisionCode
     /// <summary>The integration supplied an invalid request.</summary>
     InvalidRequest
 }
-
 /// <summary>
 /// Describes the listen host's authorization decision for a mod action.
 /// </summary>
@@ -52,4 +51,3 @@ public readonly struct AntiCheatDecision
     /// <summary>Gets a diagnostic message intended for local logs.</summary>
     public string Message { get; }
 }
-

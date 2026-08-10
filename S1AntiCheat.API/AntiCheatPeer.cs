@@ -29,4 +29,3 @@ public readonly struct AntiCheatPeer
     /// <summary>Gets whether the peer is denied for the current session.</summary>
     public bool IsDenied { get; }
 }
-

@@ -37,4 +37,3 @@ public readonly struct AntiCheatActionLimit
     /// </summary>
     public TimeSpan Window { get; }
 }
-

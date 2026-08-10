@@ -14,7 +14,6 @@ public enum AntiCheatViolationSeverity
     /// <summary>An impossible or explicitly unauthorized action.</summary>
     ExploitAttempt
 }
-
 /// <summary>
 /// Contains a violation reported by S1 Anti-Cheat or a consuming mod.
 /// </summary>
@@ -58,4 +57,3 @@ public sealed class AntiCheatViolation
     /// <summary>Gets when the violation was recorded.</summary>
     public DateTime TimestampUtc { get; }
 }
-

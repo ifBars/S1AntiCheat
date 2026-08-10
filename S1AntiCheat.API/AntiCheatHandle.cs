@@ -67,4 +67,3 @@ public sealed class AntiCheatHandle
         return value.Trim();
     }
 }
-
