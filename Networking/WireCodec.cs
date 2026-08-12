@@ -1,23 +1,26 @@
 using System.Text;
-using S1AntiCheat.API.Models;
+using S1AntiCheat.API.Verification;
+using S1AntiCheat.Bootstrap;
 
 namespace S1AntiCheat.Networking;
 
 internal static class WireCodec
 {
+    private const string ProtocolVersion = "1";
+
     private const int MaximumMods = 256;
     private const int MaximumPayloadLength = 256 * 1024;
 
     internal static string EncodeChallenge(string nonce, int timeoutSeconds, string hostFingerprint)
     {
-        return string.Join("|", "C", Constants.ProtocolVersion, Encode(Constants.ModVersion), Encode(nonce), timeoutSeconds, Encode(hostFingerprint));
+        return string.Join("|", "C", ProtocolVersion, Encode(ModInfo.Version), Encode(nonce), timeoutSeconds, Encode(hostFingerprint));
     }
 
     internal static bool TryDecodeChallenge(string payload, out string nonce)
     {
         nonce = string.Empty;
         string[] parts = Split(payload);
-        return parts.Length == 6 && parts[0] == "C" && parts[1] == Constants.ProtocolVersion &&
+        return parts.Length == 6 && parts[0] == "C" && parts[1] == ProtocolVersion &&
                TryDecode(parts[3], out nonce) && nonce.Length > 0;
     }
 
@@ -25,7 +28,7 @@ internal static class WireCodec
     {
         var lines = new List<string>(mods.Count + 1)
         {
-            string.Join("|", "R", Constants.ProtocolVersion, Encode(Constants.ModVersion), Encode(nonce), mods.Count)
+            string.Join("|", "R", ProtocolVersion, Encode(ModInfo.Version), Encode(nonce), mods.Count)
         };
 
         foreach (ModDescriptor mod in mods)
@@ -59,7 +62,7 @@ internal static class WireCodec
 
         string[] lines = payload.Split('\n');
         string[] header = lines.Length > 0 ? Split(lines[0]) : Array.Empty<string>();
-        if (header.Length != 5 || header[0] != "R" || header[1] != Constants.ProtocolVersion ||
+        if (header.Length != 5 || header[0] != "R" || header[1] != ProtocolVersion ||
             !TryDecode(header[2], out runtimeVersion) || !TryDecode(header[3], out nonce) ||
             !int.TryParse(header[4], out int count) || count < 0 || count > MaximumMods || lines.Length != count + 1)
         {

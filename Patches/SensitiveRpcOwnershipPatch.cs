@@ -1,3 +1,4 @@
+using S1AntiCheat.Bootstrap;
 using System.Reflection;
 using MelonLoader;
 using S1AntiCheat.Configuration;
@@ -35,7 +36,7 @@ internal static class SensitiveRpcOwnershipPatch
 
         string target = $"{__originalMethod.DeclaringType?.FullName}.{__originalMethod.Name}";
         MelonLogger.Warning(
-            $"{Constants.LogPrefix} Blocked RPC ownership violation from connection {conn.ClientId} " +
+            $"{ModInfo.LogPrefix} Blocked RPC ownership violation from connection {conn.ClientId} " +
             $"(SteamID {peer.SteamId}) targeting {target}.");
         return false;
     }

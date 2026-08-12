@@ -1,4 +1,7 @@
-namespace S1AntiCheat.API;
+using S1AntiCheat.API.Peers;
+using S1AntiCheat.API.Violations;
+
+namespace S1AntiCheat.API.Authorization;
 
 /// <summary>
 /// A consumer-scoped entry point for host-side action authorization.

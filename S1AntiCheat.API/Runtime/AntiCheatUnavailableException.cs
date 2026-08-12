@@ -1,4 +1,4 @@
-namespace S1AntiCheat.API;
+namespace S1AntiCheat.API.Runtime;
 
 /// <summary>
 /// Thrown when a consuming mod requires an active S1 Anti-Cheat runtime that is unavailable or too old.

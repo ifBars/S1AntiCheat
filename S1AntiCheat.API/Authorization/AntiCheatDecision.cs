@@ -1,4 +1,4 @@
-namespace S1AntiCheat.API;
+namespace S1AntiCheat.API.Authorization;
 
 /// <summary>
 /// Identifies why an integration action was accepted or rejected.

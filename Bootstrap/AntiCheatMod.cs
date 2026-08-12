@@ -3,19 +3,19 @@ using S1AntiCheat.Configuration;
 using S1AntiCheat.Networking;
 using S1AntiCheat.Patches;
 using S1AntiCheat.Runtime;
-using S1AntiCheat.Services;
+using S1AntiCheat.Verification;
 
 [assembly: MelonInfo(
-    typeof(S1AntiCheat.Core),
-    S1AntiCheat.Constants.ModName,
-    S1AntiCheat.Constants.ModVersion,
-    S1AntiCheat.Constants.ModAuthor)]
+    typeof(S1AntiCheat.Bootstrap.AntiCheatMod),
+    S1AntiCheat.Bootstrap.ModInfo.Name,
+    S1AntiCheat.Bootstrap.ModInfo.Version,
+    S1AntiCheat.Bootstrap.ModInfo.Author)]
 [assembly: MelonGame("TVGS", "Schedule I")]
 [assembly: MelonPriority(int.MinValue + 50)]
 
-namespace S1AntiCheat;
+namespace S1AntiCheat.Bootstrap;
 
-public sealed class Core : MelonMod
+public sealed class AntiCheatMod : MelonMod
 {
     private ConnectionRegistry? _connections;
     private IntegrityMessaging? _messaging;
@@ -41,7 +41,7 @@ public sealed class Core : MelonMod
             API.AntiCheat.RegisterRuntime(_runtime);
 
             LoggerInstance.Msg(
-                $"{Constants.ModName} {Constants.ModVersion} initialized. " +
+                $"{ModInfo.Name} {ModInfo.Version} initialized. " +
                 $"ClientVerification={AntiCheatPreferences.RequireClientAntiCheat.Value}, " +
                 $"ManifestPolicy={AntiCheatPreferences.ParsedVerificationMode}.");
         }
@@ -99,7 +99,7 @@ public sealed class Core : MelonMod
         if (_lobbyLockAttemptsRemaining <= 0)
         {
             _lobbyLockPending = false;
-            MelonLogger.Warning($"{Constants.LogPrefix} Could not resolve the current lobby ID to lock late joins.");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} Could not resolve the current lobby ID to lock late joins.");
         }
     }
 }

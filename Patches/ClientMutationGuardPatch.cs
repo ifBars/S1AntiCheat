@@ -1,3 +1,4 @@
+using S1AntiCheat.Bootstrap;
 using System.Diagnostics;
 using System.Reflection;
 using MelonLoader;
@@ -45,7 +46,7 @@ internal static class ClientMutationGuardPatch
         }
 
         MelonLogger.Warning(
-            $"{Constants.LogPrefix} Blocked client mod call from {caller.GetName().Name} into " +
+            $"{ModInfo.LogPrefix} Blocked client mod call from {caller.GetName().Name} into " +
             $"{__originalMethod.DeclaringType?.FullName}.{__originalMethod.Name}.");
         return false;
     }

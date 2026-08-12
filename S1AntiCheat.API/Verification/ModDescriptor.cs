@@ -1,4 +1,4 @@
-namespace S1AntiCheat.API.Models;
+namespace S1AntiCheat.API.Verification;
 
 internal sealed class ModDescriptor
 {

@@ -1,4 +1,4 @@
-namespace S1AntiCheat.API;
+namespace S1AntiCheat.API.Peers;
 
 /// <summary>
 /// Represents the anti-cheat state associated with a FishNet connection.

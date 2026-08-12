@@ -25,7 +25,10 @@ See [method coverage](docs/method-coverage.md) for the exact boundary and the ga
 
 ## Project layout
 
-- `S1AntiCheat.API` contains the loader-independent contract, models, and policy services.
+- `S1AntiCheat.API` contains the loader-independent facade and feature-focused contract namespaces.
+- `S1AntiCheat.API/Authorization`, `Peers`, `Runtime`, and `Violations` contain the public integration contracts beside their internal policy support.
+- `Bootstrap` contains the MelonLoader entry point and mod metadata.
+- `Verification` contains manifest collection and verification orchestration.
 - `S1AntiCheat` contains the MelonLoader, FishNet, Steam lobby, and Harmony adapters.
 - `tests/S1AntiCheat.ContractVerifier` exercises the dependency contract and pure policy code.
 - `tests/Verify-GameSurface.ps1` checks the exact game and FishNet seams used by both runtime builds.
@@ -54,6 +57,7 @@ Reference `S1AntiCheat.API.dll`, then require the runtime during your mod's init
 ```csharp
 using MelonLoader;
 using S1AntiCheat.API;
+using S1AntiCheat.API.Authorization;
 
 [assembly: MelonAdditionalDependencies("S1AntiCheat.API")]
 

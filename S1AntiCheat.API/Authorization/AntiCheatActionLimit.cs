@@ -1,4 +1,4 @@
-namespace S1AntiCheat.API;
+namespace S1AntiCheat.API.Authorization;
 
 /// <summary>
 /// Defines a fixed-window action limit enforced by the listen host.

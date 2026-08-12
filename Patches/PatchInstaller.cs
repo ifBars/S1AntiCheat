@@ -1,3 +1,4 @@
+using S1AntiCheat.Bootstrap;
 using System.Reflection;
 using HarmonyLib;
 using MelonLoader;
@@ -118,7 +119,7 @@ internal static class PatchInstaller
         int rpcReaders = InstallRpcOwnershipGuards(harmony);
         int mutationMethods = InstallClientMutationGuards(harmony);
         MelonLogger.Msg(
-            $"{Constants.LogPrefix} Installed admission, verification, {consoleMethods} console guards, " +
+            $"{ModInfo.LogPrefix} Installed admission, verification, {consoleMethods} console guards, " +
             $"{rpcReaders} RPC ownership guards, and {mutationMethods} client mutation guards.");
     }
 

@@ -4,6 +4,8 @@ using System.Reflection;
 using HarmonyLib;
 using MelonLoader;
 using S1AntiCheat.API;
+using S1AntiCheat.API.Authorization;
+using S1AntiCheat.API.Peers;
 #if MONO
 using FishNet;
 using FishNet.Connection;

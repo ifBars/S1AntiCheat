@@ -1,6 +1,7 @@
+using S1AntiCheat.Bootstrap;
 using MelonLoader;
-using S1AntiCheat.API;
-using S1AntiCheat.API.Services;
+using S1AntiCheat.API.Authorization;
+using S1AntiCheat.API.Peers;
 #if MONO
 using NetworkConnection = FishNet.Connection.NetworkConnection;
 #else
@@ -30,7 +31,7 @@ internal sealed class ConnectionRegistry
         _explicitAllowlist = AdmissionPolicy.ParseSteamIdSet(allowedSteamIds);
         if (_explicitAllowlist.Count > 0)
         {
-            MelonLogger.Msg($"{Constants.LogPrefix} Loaded {_explicitAllowlist.Count} explicitly allowed SteamID(s).");
+            MelonLogger.Msg($"{ModInfo.LogPrefix} Loaded {_explicitAllowlist.Count} explicitly allowed SteamID(s).");
         }
     }
 
@@ -136,7 +137,7 @@ internal sealed class ConnectionRegistry
             }
             catch (Exception exception)
             {
-                MelonLogger.Warning($"{Constants.LogPrefix} Failed to disconnect connection {connection.ClientId}: {exception.Message}");
+                MelonLogger.Warning($"{ModInfo.LogPrefix} Failed to disconnect connection {connection.ClientId}: {exception.Message}");
             }
         }
     }

@@ -1,8 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
-using S1AntiCheat.API.Models;
 
-namespace S1AntiCheat.API.Services;
+namespace S1AntiCheat.API.Verification;
 
 internal static class ModVerificationPolicy
 {

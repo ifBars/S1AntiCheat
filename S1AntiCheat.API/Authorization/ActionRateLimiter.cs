@@ -1,4 +1,4 @@
-namespace S1AntiCheat.API.Services;
+namespace S1AntiCheat.API.Authorization;
 
 internal sealed class ActionRateLimiter
 {

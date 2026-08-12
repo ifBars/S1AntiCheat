@@ -18,6 +18,8 @@ Declare the loader dependency and require the minimum runtime version:
 ```csharp
 using MelonLoader;
 using S1AntiCheat.API;
+using S1AntiCheat.API.Authorization;
+using S1AntiCheat.API.Violations;
 
 [assembly: MelonAdditionalDependencies("S1AntiCheat.API")]
 

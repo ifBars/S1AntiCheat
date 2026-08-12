@@ -1,3 +1,4 @@
+using S1AntiCheat.Bootstrap;
 using System.Reflection;
 using MelonLoader;
 #if MONO
@@ -18,7 +19,7 @@ internal static class ConsoleGuardPatch
         }
 
         MelonLogger.Warning(
-            $"{Constants.LogPrefix} Blocked client-side game console execution: " +
+            $"{ModInfo.LogPrefix} Blocked client-side game console execution: " +
             $"{__originalMethod.DeclaringType?.Name}.{__originalMethod.Name}.");
         return false;
     }

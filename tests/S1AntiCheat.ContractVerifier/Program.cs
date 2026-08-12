@@ -1,7 +1,9 @@
 using S1AntiCheat.API;
-using S1AntiCheat.API.Internal;
-using S1AntiCheat.API.Models;
-using S1AntiCheat.API.Services;
+using S1AntiCheat.API.Authorization;
+using S1AntiCheat.API.Peers;
+using S1AntiCheat.API.Runtime;
+using S1AntiCheat.API.Verification;
+using S1AntiCheat.API.Violations;
 
 namespace S1AntiCheat.ContractVerifier;
 

@@ -1,3 +1,4 @@
+using S1AntiCheat.Bootstrap;
 using MelonLoader;
 #if MONO
 using Channel = FishNet.Transporting.Channel;
@@ -29,6 +30,8 @@ namespace S1AntiCheat.Networking;
 
 internal sealed class IntegrityMessaging
 {
+    private const uint MessageId = 211u;
+
     private NetworkBehaviour? _networkBehaviour;
 
     internal event Action<string>? ClientMessageReceived;
@@ -42,14 +45,14 @@ internal sealed class IntegrityMessaging
         try
         {
             var networkBehaviour = (NetworkBehaviour)instance;
-            networkBehaviour.RegisterTargetRpc(Constants.MessageId, CreateClientDelegate());
-            networkBehaviour.RegisterServerRpc(Constants.MessageId, CreateServerDelegate());
+            networkBehaviour.RegisterTargetRpc(MessageId, CreateClientDelegate());
+            networkBehaviour.RegisterServerRpc(MessageId, CreateServerDelegate());
             _networkBehaviour = networkBehaviour;
-            MelonLogger.Msg($"{Constants.LogPrefix} Registered verification messaging on DailySummary.");
+            MelonLogger.Msg($"{ModInfo.LogPrefix} Registered verification messaging on DailySummary.");
         }
         catch (Exception exception)
         {
-            MelonLogger.Error($"{Constants.LogPrefix} Could not register verification messaging: {exception}");
+            MelonLogger.Error($"{ModInfo.LogPrefix} Could not register verification messaging: {exception}");
         }
     }
 
@@ -65,12 +68,12 @@ internal sealed class IntegrityMessaging
         try
         {
             ((Writer)writer).WriteString(payload);
-            networkBehaviour.SendServerRpc(Constants.MessageId, writer, Channel.Reliable, DataOrderType.Default);
+            networkBehaviour.SendServerRpc(MessageId, writer, Channel.Reliable, DataOrderType.Default);
             return true;
         }
         catch (Exception exception)
         {
-            MelonLogger.Warning($"{Constants.LogPrefix} Could not send verification report: {exception.Message}");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} Could not send verification report: {exception.Message}");
             return false;
         }
         finally
@@ -92,7 +95,7 @@ internal sealed class IntegrityMessaging
         {
             ((Writer)writer).WriteString(payload);
             networkBehaviour.SendTargetRpc(
-                Constants.MessageId,
+                MessageId,
                 writer,
                 Channel.Reliable,
                 DataOrderType.Default,
@@ -103,7 +106,7 @@ internal sealed class IntegrityMessaging
         }
         catch (Exception exception)
         {
-            MelonLogger.Warning($"{Constants.LogPrefix} Could not send verification challenge: {exception.Message}");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} Could not send verification challenge: {exception.Message}");
             return false;
         }
         finally
@@ -143,7 +146,7 @@ internal sealed class IntegrityMessaging
         }
         catch (Exception exception)
         {
-            MelonLogger.Warning($"{Constants.LogPrefix} Invalid host verification message: {exception.Message}");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} Invalid host verification message: {exception.Message}");
         }
     }
 
@@ -155,7 +158,7 @@ internal sealed class IntegrityMessaging
         }
         catch (Exception exception)
         {
-            MelonLogger.Warning($"{Constants.LogPrefix} Invalid client verification message: {exception.Message}");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} Invalid client verification message: {exception.Message}");
         }
     }
 }

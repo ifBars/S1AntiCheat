@@ -1,5 +1,5 @@
 using MelonLoader;
-using S1AntiCheat.API.Models;
+using S1AntiCheat.API.Verification;
 
 namespace S1AntiCheat.Configuration;
 

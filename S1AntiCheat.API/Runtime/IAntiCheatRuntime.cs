@@ -1,4 +1,8 @@
-namespace S1AntiCheat.API.Internal;
+using S1AntiCheat.API.Authorization;
+using S1AntiCheat.API.Peers;
+using S1AntiCheat.API.Violations;
+
+namespace S1AntiCheat.API.Runtime;
 
 internal interface IAntiCheatRuntime
 {

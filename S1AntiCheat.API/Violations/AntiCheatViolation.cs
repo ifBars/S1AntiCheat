@@ -1,4 +1,4 @@
-namespace S1AntiCheat.API;
+namespace S1AntiCheat.API.Violations;
 
 /// <summary>
 /// Classifies the severity of an integration-reported anti-cheat violation.

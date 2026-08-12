@@ -1,3 +1,4 @@
+using S1AntiCheat.Bootstrap;
 using System.Reflection;
 using HarmonyLib;
 using MelonLoader;
@@ -42,7 +43,7 @@ internal static class LobbyAccess
         }
         catch (Exception exception)
         {
-            MelonLogger.Warning($"{Constants.LogPrefix} Lobby membership lookup failed: {exception.Message}");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} Lobby membership lookup failed: {exception.Message}");
             return false;
         }
     }
@@ -60,7 +61,7 @@ internal static class LobbyAccess
         }
         catch (Exception exception)
         {
-            MelonLogger.Warning($"{Constants.LogPrefix} Steam friendship lookup failed: {exception.Message}");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} Steam friendship lookup failed: {exception.Message}");
             return false;
         }
     }
@@ -100,7 +101,7 @@ internal static class LobbyAccess
         }
         catch (Exception exception)
         {
-            MelonLogger.Warning($"{Constants.LogPrefix} Lobby lock failed: {exception.Message}");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} Lobby lock failed: {exception.Message}");
             return false;
         }
     }

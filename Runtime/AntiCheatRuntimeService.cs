@@ -1,7 +1,10 @@
+using S1AntiCheat.Bootstrap;
 using MelonLoader;
 using S1AntiCheat.API;
-using S1AntiCheat.API.Internal;
-using S1AntiCheat.API.Services;
+using S1AntiCheat.API.Authorization;
+using S1AntiCheat.API.Peers;
+using S1AntiCheat.API.Runtime;
+using S1AntiCheat.API.Violations;
 using S1AntiCheat.Configuration;
 #if MONO
 using InstanceFinder = FishNet.InstanceFinder;
@@ -22,7 +25,7 @@ internal sealed class AntiCheatRuntimeService : IAntiCheatRuntime
         _connections.ConnectionRemoved += OnConnectionRemoved;
     }
 
-    public Version Version { get; } = new(Constants.ModVersion);
+    public Version Version { get; } = new(ModInfo.Version);
 
     public bool IsHostProtectionActive => InstanceFinder.IsHost;
 
@@ -97,10 +100,10 @@ internal sealed class AntiCheatRuntimeService : IAntiCheatRuntime
         }
         catch (Exception exception)
         {
-            MelonLogger.Warning($"{Constants.LogPrefix} A violation event subscriber failed: {exception.Message}");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} A violation event subscriber failed: {exception.Message}");
         }
         MelonLogger.Warning(
-            $"{Constants.LogPrefix} VIOLATION consumer={consumerId} capability={capability} " +
+            $"{ModInfo.LogPrefix} VIOLATION consumer={consumerId} capability={capability} " +
             $"severity={severity} connection={connectionId} steamId={steamId} reason={reason}");
 
         if (severity == AntiCheatViolationSeverity.ExploitAttempt &&

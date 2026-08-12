@@ -1,6 +1,6 @@
+using S1AntiCheat.Bootstrap;
 using MelonLoader;
-using S1AntiCheat.API.Models;
-using S1AntiCheat.API.Services;
+using S1AntiCheat.API.Peers;
 using S1AntiCheat.Configuration;
 using S1AntiCheat.Runtime;
 #if MONO
@@ -41,7 +41,7 @@ internal static class ServerAdmissionPatch
         }
         catch (Exception exception)
         {
-            MelonLogger.Warning($"{Constants.LogPrefix} Could not read transport identity: {exception.Message}");
+            MelonLogger.Warning($"{ModInfo.LogPrefix} Could not read transport identity: {exception.Message}");
         }
 
         AdmissionPolicy.TryParseSteamId(transportAddress, out ulong transportSteamId);
@@ -71,7 +71,7 @@ internal static class ServerAdmissionPatch
             if (decision.Reason != AdmissionReason.LocalHost)
             {
                 MelonLogger.Msg(
-                    $"{Constants.LogPrefix} Admitted SteamID {decision.SteamId} " +
+                    $"{ModInfo.LogPrefix} Admitted SteamID {decision.SteamId} " +
                     $"({decision.Reason}, connection {args.ConnectionId}).");
             }
 
@@ -81,7 +81,7 @@ internal static class ServerAdmissionPatch
         PeerState peer = PatchContext.Connections.Begin(args.ConnectionId, decision.SteamId);
         PatchContext.Connections.Deny(peer);
         MelonLogger.Warning(
-            $"{Constants.LogPrefix} Rejected SteamID {decision.SteamId} " +
+            $"{ModInfo.LogPrefix} Rejected SteamID {decision.SteamId} " +
             $"({decision.Reason}, connection {args.ConnectionId}).");
 
         try
@@ -90,7 +90,7 @@ internal static class ServerAdmissionPatch
         }
         catch (Exception exception)
         {
-            MelonLogger.Error($"{Constants.LogPrefix} Failed to close rejected connection: {exception}");
+            MelonLogger.Error($"{ModInfo.LogPrefix} Failed to close rejected connection: {exception}");
         }
 
         return false;

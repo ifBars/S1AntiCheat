@@ -1,9 +1,10 @@
 using System.Reflection;
 using System.Security.Cryptography;
 using MelonLoader;
-using S1AntiCheat.API.Models;
+using S1AntiCheat.API.Verification;
+using S1AntiCheat.Bootstrap;
 
-namespace S1AntiCheat.Services;
+namespace S1AntiCheat.Verification;
 
 internal sealed class ModManifestService
 {
@@ -42,7 +43,7 @@ internal sealed class ModManifestService
             }
             catch (Exception exception)
             {
-                MelonLogger.Warning($"{Constants.LogPrefix} Could not describe a loaded mod: {exception.Message}");
+                MelonLogger.Warning($"{ModInfo.LogPrefix} Could not describe a loaded mod: {exception.Message}");
             }
         }
 
@@ -64,7 +65,7 @@ internal sealed class ModManifestService
             }
             catch (Exception exception)
             {
-                MelonLogger.Warning($"{Constants.LogPrefix} Could not hash {Path.GetFileName(location)}: {exception.Message}");
+                MelonLogger.Warning($"{ModInfo.LogPrefix} Could not hash {Path.GetFileName(location)}: {exception.Message}");
             }
         }
 

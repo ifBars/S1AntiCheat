@@ -1,6 +1,4 @@
-using S1AntiCheat.API.Models;
-
-namespace S1AntiCheat.API.Services;
+namespace S1AntiCheat.API.Peers;
 
 internal static class AdmissionPolicy
 {
